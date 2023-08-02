@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Book Ticket</h1>
+    <h2>{{ show.name }}</h2>
+    <p class="lead">{{ show.venue.name }}</p>
+    <p>{{ show.start_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+  </div>
+
+  <div class="container mt-5">
+    <form method="POST" action="{{ url_for('book_tickets', show_id=show.id) }}">
+      <div class="form-group">
+        <label for="name">Email:</label>
+        <input type="text" class="form-control" name="email" id="email">
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="tickets">Number of Tickets:</label>
+        <input type="number" class="form-control" name="num_tickets" id="num_tickets">
+      </div>
+      <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+  </div>
+{% endblock %}

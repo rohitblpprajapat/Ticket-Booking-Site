@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr><hr> 
+  <div class="container mt-4">
+    <h1>Search Results</h1>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Movies</h3>
+        <ul>
+          {% for movie in movies %}
+            <li><a href="{{ url_for('movies', movie_id=movie.id) }}">{{ movie.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <h3>Venues</h3>
+        <ul>
+          {% for venue in venues %}
+            <li><a href="{{ url_for('venue', venue_id=venue.id) }}">{{ venue.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

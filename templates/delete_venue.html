@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Delete Show</h1>
+
+  <p>Are you sure you want to delete the Venue "{{ venue.name }}"?</p>
+
+  <form method="post" action="{{ url_for('delete_venue', venue_id=venue.id) }}">
+    <button type="submit" class="btn btn-danger">Delete venue</button>
+  </form>
+</div>
+{% endblock %}

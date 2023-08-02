@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+  {% for v in venue %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title">{{ v.name }}</h2>
+      <h6 class="card-subtitle mb-2 text-muted">{{ v.place }}</h6>
+      <p class="card-text"><strong>Capacity:</strong> {{ v.capacity }}</p>
+      <hr>
+      <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Back to Home</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

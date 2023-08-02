@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Welcome to our Movie Ticket Booking App</h1>
+    <p class="lead">Browse the shows and venues and book your tickets now!</p>
+  </div>
+ 
+  <div class="container">  
+    <div class="row">
+      
+        {% for v in venues %}
+          
+            <div class="card shadow mb-5">
+              <div class="card-header">
+                <h2 class="card-title">{{ v.name }}</h2>
+                <p class="card-text"><small class="text-muted">Capacity: {{ v.capacity }}</small></p>
+              </div>
+              <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                  {% for s in v.shows %}
+                    <div class="col mb-3">
+                      <div class="card h-100">
+                        <img src="/static/{{s.poster}}" class="card-img-top" alt="s.name">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ s.name }}</h5>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Rating: </b> {{ s.rating }}</li>
+                            <li class="list-group-item"><b>Tags: </b> {{ s.tags }}</li>
+                            <li class="list-group-item"><b>Price: </b> {{ s.price }}</li>
+                          </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                          <a href="{{url_for('book_tickets', show_id = s.id)}}" class="btn btn-primary">Book Tickets</a>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          
+        {% endfor %}
+    </div>
+  </div>
+{% endblock %}

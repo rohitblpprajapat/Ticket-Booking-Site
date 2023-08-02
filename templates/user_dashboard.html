@@ -1,0 +1,35 @@
+<!-- user_dashboard.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Welcome back, {{ user.email }}!</h1>
+    <p class="lead">Here are your ticket bookings:</p>
+    {% if tickets %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Show</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Date</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in tickets %}
+            <tr>
+              <td>{{ ticket.show.name }}</td>
+              <td>{{ ticket.show.venue.name }}</td>
+              <td>{{ ticket.show.start_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+              <td>{{ ticket.quantity }}</td>
+              <td>{{ ticket.total_price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You have not booked any tickets yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

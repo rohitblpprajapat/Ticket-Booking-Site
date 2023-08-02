@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-between align-items-center">
+        <div class="col">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <div class="col-auto">
+            <a href="{{ url_for('add_venue') }}" class="btn btn-primary rounded-pill">Add Venue</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for v in venues %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">{{ v.name }}</h2>
+                        <div>
+                            <a href="{{ url_for('add_show', venue_id=v.id) }}" class="btn btn-primary rounded-pill me-2">Add Show</a>
+                            <a href="{{url_for('edit_venue', v_id = v.id) }}" class="btn btn-secondary rounded-pill me-2">Edit Venue</a>
+                            {% if v.shows %}
+                            <button class="btn btn-danger rounded-pill" disabled data-bs-toggle="tooltip" data-bs-placement="top" title="Delete all Shows First">Delete Venue</button>
+                            {% else %}
+                            <a href="{{url_for('delete_venue', venue_id = v.id) }}" class="btn btn-danger rounded-pill me-2">Delete Venue</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="card-text"><strong>Capacity:</strong> {{ v.capacity }}</p>
+                </div>
+                {% if v.shows %}
+                <div class="card-footer">
+                    <h5 class="mb-3">Shows:</h5>
+                    <div class="row">
+                        {% for s in v.shows %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <img src="/static/{{s.poster}}" class="card-img-top" alt="{{ s.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ s.name }}</h5>
+                                    <p class="card-text">{{ s.description }}</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Rating:</strong> {{ s.rating }}</li>
+                                    <li class="list-group-item"><strong>Tags:</strong> {{ s.tags }}</li>
+                                    <li class="list-group-item"><strong>Price:</strong> {{ s.price }}</li>
+                                </ul>
+                                <div class="card-footer">
+                                    <a href="{{url_for('update_show', id = s.id)}}" class="card-link">Edit Show</a>
+                                    <a href="{{url_for('delete_show', id = s.id)}}" class="card-link text-danger">Delete Show</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

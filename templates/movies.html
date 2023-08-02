@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br>
+
+<div class="container">
+  <h1 class="my-4">Movies</h1>
+  <div class="row">
+    {% for movie in show %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="{{ url_for('movies', movie_id=movie.id) }}"><img class="card-img-top" src="/static/{{movie.poster}}" alt="{{ movie.name }}"></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{{ url_for('movies', movie_id=movie.id) }}">{{ movie.name }}</a>
+          </h4>
+          <p class="card-text">{{ movie.tags }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Update Show</h1>
+
+  <form method="post" action="{{ url_for('update_show', id=show.id) }}" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">Movie Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ show.name }}" required>
+    </div>
+    <div class="form-group">
+      <label for="rating">Movie Rating</label>
+      <input type="text" class="form-control" id="rating" name="rating" value="{{ show.rating }}" required>
+    </div>
+    <div class="form-group">
+      <label for="tags">Movie Tags</label>
+      <input type="text" class="form-control" id="tags" name="tags" value="{{ show.tags }}" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Ticket Price</label>
+      <input type="text" class="form-control" id="price" name="price" value="{{ show.price }}" required>
+    </div>
+    <div class="form-group">
+      <label for="poster">Movie Poster</label>
+      <input type="file" class="form-control" id="poster" name="poster">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Show</button>
+  </form>
+</div>
+{% endblock %}
+
