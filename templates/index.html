@@ -5,12 +5,9 @@
     <h1>Welcome to our Movie Ticket Booking App</h1>
     <p class="lead">Browse the shows and venues and book your tickets now!</p>
   </div>
- 
   <div class="container">  
     <div class="row">
-      
         {% for v in venues %}
-          
             <div class="card shadow mb-5">
               <div class="card-header">
                 <h2 class="card-title">{{ v.name }}</h2>
