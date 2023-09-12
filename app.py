@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = 'Jai_Shree_Krishna'    
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ticketbooking.sqlite'  
 
-
+db.init_app(app)
  
 
 
